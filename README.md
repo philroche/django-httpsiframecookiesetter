@@ -1,7 +1,11 @@
 django-httpsiframecookiesetter
 ==============================
 
-A workaround for Safari's strict cookie policy when trying to write cookies from within an iframe under https
+A workaround for Safari's strict cookie policy when trying to write cookies from within an iframe under https.
+
+This fix is specific to Django and the CSRF cookie.
+
+When a specified URL is visited _and_ the request is secure _and_ there is no CSRF cookie then the user is redirected to a non secure view which sets the CSRF cookie (safari allows this) and then redirects back to the secure URL.
 
 Usage
 -----
