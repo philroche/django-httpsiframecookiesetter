@@ -5,6 +5,11 @@ A workaround for Safari's strict cookie policy when trying to write cookies from
 
 This fix is specific to Django and the CSRF cookie.
 
+If your view is withing an iframe and is secure then Safari does not permit you to write any cookies if you are not on the same domain as that of the parent page. This is a problem when using Django when trying to POST forms as the CSRF cookie can not be written and therefore Django will not process the POST request.
+
+Solution
+-----
+
 When a specified URL is visited _and_ the request is secure _and_ there is no CSRF cookie then the user is redirected to a non secure view which sets the CSRF cookie (safari allows this) and then redirects back to the secure URL.
 
 Usage
