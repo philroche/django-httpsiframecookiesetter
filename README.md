@@ -32,7 +32,7 @@ add iframetoolbox to installed apps:
 
 add url config:
 
-url(r'^cookiesetter/', include('httpsiframecookiesetter.urls')),
+    url(r'^cookiesetter/', include('httpsiframecookiesetter.urls')),
 
 
 You can also set the URL to check - only URLs containing '/events/' will be processed
