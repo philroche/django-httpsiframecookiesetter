@@ -31,6 +31,8 @@ class CookieSetterMiddleware(object):
 
     def process_request(self, request):
 
+        #TODO - use browser sniffer
+        #TODO - use check safari, csrf and is_secure, an iframe first so it is only safari that is slowed down
         #get the url to the cookiesetter view
         #cached value
         cookiesetter_view_path = self.urlpath()
