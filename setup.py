@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-httpsiframecookiesetter',
-    version='0.0.2',
+    version='0.0.3',
     url='https://github.com/philroche/django-httpsiframecookiesetter',
     license='Public Domain',
     author='Philip Roche',
@@ -24,6 +24,9 @@ setup(
     platforms='any',
     install_requires=[
         'django',
+        'pyyaml',
+        'ua-parser',
+        'user-agents'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
