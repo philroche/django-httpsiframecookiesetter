@@ -1,2 +1,4 @@
 /django_httpsiframecookiesetter.egg-info/
 /.idea/
+/.project
+*.pyc
