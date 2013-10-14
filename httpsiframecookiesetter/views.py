@@ -1,4 +1,5 @@
 import urllib2
+import logging
 
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -6,6 +7,8 @@ from django.core.urlresolvers import reverse
 from django.conf import settings as django_settings
 
 from .settings import HTTPS_IFRAME_COOKIESETTER_LOADING_GRAPHIC
+
+logger = logging.getLogger(__name__)
 
 def cookiesetter(request):
     quoted_absurl = request.GET.get('absurl', '/')
