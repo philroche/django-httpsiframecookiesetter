@@ -60,7 +60,7 @@ def check_csrf_cookie_present(request):
                 parsed = urlparse(redirect_url)
                 redirect_url = '%s://%s%s?%s' % ('http',parsed.netloc, parsed.path, parsed.query)
                 return False,redirect_url
-            
+
 
     requested_url = request.build_absolute_uri()
     return True, requested_url
