@@ -22,6 +22,13 @@ Add new midleware after session creation:
         ...
     )
 
+OR use a decoreator instead of using the middleware. Middleware will check every request.
+
+    from httpsiframecookiesetter.decorators import check_csrf
+
+    @check_csrf
+    def view(request, .....
+
 add iframetoolbox to installed apps:
 
     INSTALLED_APPS = (
