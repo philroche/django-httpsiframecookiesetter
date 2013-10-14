@@ -38,10 +38,10 @@ add url config:
 You can also set the URL to check - only URLs containing '/events/' will be processed and also change other settings below
 
     #iframe cookie setter settings
-    HTTPS_IFRAME_COOKIESETTER_URL_TO_CHECK = getattr(settings, 'COOKIESETTER_URL_TO_CHECK', '/myview')
-    HTTPS_IFRAME_COOKIESETTER_BROWSERS = getattr(settings, 'COOKIESETTER_BROWSERS', ['Safari','Mobile Safari'])
-    HTTPS_IFRAME_COOKIESETTER_ADDITIONAL_CHECKS = getattr(settings, 'COOKIESETTER_ADDITIONAL_CHECKS', None)
-    HTTPS_IFRAME_COOKIESETTER_ONLY_HTTPS = getattr(settings, 'COOKIESETTER_ONLY_HTTPS', True)
-    HTTPS_IFRAME_COOKIESETTER_LOADING_GRAPHIC = getattr(settings, 'COOKIESETTER_LOADING_GRAPHIC', 'http://loadinggif.com/images/image-selection/35.gif')
+    COOKIESETTER_URL_TO_CHECK = '/i/events/'
+    COOKIESETTER_BROWSERS =  ['Safari','Mobile Safari']
+    COOKIESETTER_ADDITIONAL_CHECKS =  None
+    COOKIESETTER_ONLY_HTTPS = False
+    COOKIESETTER_LOADING_GRAPHIC = '/media/img/ajaxloader75_32.gif'
 
 If needed overwrite templates with your message and style. For reference look at source (download url).
