@@ -24,9 +24,9 @@ setup(
     platforms='any',
     install_requires=[
         'django',
-        'pyyaml==13.07.1',
-        'ua-parser==0.3.4',
-        'user-agents==0.2.0'
+        'pyyaml',
+        'ua-parser',
+        'user-agents'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
