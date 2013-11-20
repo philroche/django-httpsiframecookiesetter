@@ -9,12 +9,12 @@ except ImportError:
 from django.conf import settings
 
 from django.conf import settings as django_settings
-from django.middleware.csrf import _sanitize_token
 from django.core.urlresolvers import reverse
 
 
 from .settings import HTTPS_IFRAME_COOKIESETTER_URL_TO_CHECK, HTTPS_IFRAME_COOKIESETTER_BROWSERS, \
-                        HTTPS_IFRAME_COOKIESETTER_ADDITIONAL_CHECKS, HTTPS_IFRAME_COOKIESETTER_ONLY_HTTPS
+                        HTTPS_IFRAME_COOKIESETTER_ADDITIONAL_CHECKS, HTTPS_IFRAME_COOKIESETTER_ONLY_HTTPS, \
+                        HTTPS_IFRAME_COOKIESETTER_COOKIES
 
 _property_cache = {}
 
@@ -32,7 +32,8 @@ def urlpath():
         _property_cache['cookiesetter_view_path'] = reverse('cookiesetter', urlconf=django_settings.ROOT_URLCONF)
     return _property_cache['cookiesetter_view_path']
 
-def check_csrf_cookie_present(request):
+
+def check_cookie_present(request):
     #TODO we need to check the number of redirects in case we end up in a loop for some reason
     if  HTTPS_IFRAME_COOKIESETTER_URL_TO_CHECK in request.path \
         and not (request.path.startswith(settings.MEDIA_URL) or request.path.startswith(settings.STATIC_URL)) \
@@ -46,14 +47,16 @@ def check_csrf_cookie_present(request):
             and cookiesetter_view_path not in request.path:#these are after the initial check as it is an expensive lookup
 
             current_absolute_url = urllib2.quote(request.build_absolute_uri().encode("utf8"))
-            csrf_token = None
 
-            try:
-                csrf_token = _sanitize_token(request.COOKIES[settings.CSRF_COOKIE_NAME])
-            except KeyError:
-                csrf_token = None
+            cookies_present = True
 
-            if not csrf_token:
+            for cookie_string in HTTPS_IFRAME_COOKIESETTER_COOKIES:
+                try:
+                    cookie_token = request.COOKIES[cookie_string]
+                except KeyError:
+                    cookies_present = False
+
+            if not cookies_present:
                 #ehck url scheme to http
                 redirect_url = '%s?absurl=%s' %(cookiesetter_view_path, current_absolute_url)
                 redirect_url = request.build_absolute_uri(redirect_url)
